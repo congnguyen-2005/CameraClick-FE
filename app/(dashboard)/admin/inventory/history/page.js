@@ -1,7 +1,7 @@
 "use client";
 
 import { useSearchParams, useRouter } from "next/navigation";
-import { useEffect, useState, useCallback } from "react";
+import { useEffect, useState, useCallback, Suspense } from "react"; // Thêm Suspense ở đây
 import productstoreService from "../../../../services/productstoreService";
 import { 
   ArrowLeft, 
@@ -17,7 +17,8 @@ import {
 } from "lucide-react";
 import "bootstrap/dist/css/bootstrap.min.css";
 
-export default function InventoryHistoryPage() {
+// 1. Tách phần nội dung sử dụng useSearchParams ra một component riêng
+function InventoryHistoryContent() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const product_id = searchParams.get("product_id");
@@ -30,11 +31,9 @@ export default function InventoryHistoryPage() {
     try {
       setLoading(true);
       let res;
-      // Nếu có ID thì lấy lịch sử 1 SP, nếu không lấy tất cả (History Log chung)
       if (product_id) {
         res = await productstoreService.historyByProduct(product_id);
       } else {
-        // Bạn cần đảm bảo service này gọi đúng API lấy toàn bộ log
         res = await productstoreService.historyLog(); 
       }
       
@@ -56,10 +55,6 @@ export default function InventoryHistoryPage() {
     log.product_name?.toLowerCase().includes(searchTerm.toLowerCase()) ||
     log.id?.toString().includes(searchTerm)
   );
-
-  const formatCurrency = (value) => {
-    return new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(value);
-  };
 
   if (loading) return (
     <div className="min-vh-100 d-flex flex-column justify-content-center align-items-center bg-white">
@@ -188,7 +183,20 @@ export default function InventoryHistoryPage() {
           </button>
         </div>
       </div>
+    </div>
+  );
+}
 
+// 2. Component chính bọc Suspense để vượt qua lỗi build của Vercel
+export default function InventoryHistoryPage() {
+  return (
+    <Suspense fallback={
+        <div className="min-vh-100 d-flex flex-column justify-content-center align-items-center bg-white">
+            <div className="spinner-border text-dark mb-3"></div>
+            <span className="text-muted small uppercase">Đang chuẩn bị dữ liệu...</span>
+        </div>
+    }>
+      <InventoryHistoryContent />
       <style jsx global>{`
         .fw-black { font-weight: 900; }
         .ls-2 { letter-spacing: 2px; }
@@ -239,6 +247,6 @@ export default function InventoryHistoryPage() {
         
         .border-bottom-subtle { border-bottom: 1px solid rgba(0,0,0,0.03); }
       `}</style>
-    </div>
+    </Suspense>
   );
 }
