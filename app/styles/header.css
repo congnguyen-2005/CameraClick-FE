@@ -1,0 +1,123 @@
+/* ============================
+   HEADER STYLE
+============================= */
+
+
+header {
+  position: sticky;
+  top: 0;
+  z-index: 1000 !important;
+  background: #ffffff;
+  border-bottom: 1px solid #eee;
+ 
+
+}
+
+/* FLEX NGANG CHUẨN */
+.header-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  
+}
+
+/* NAV MẶC ĐỊNH FLEX NGANG */
+.nav-menu {
+  display: flex;
+  gap: 28px;
+  align-items: center;
+}
+
+.nav-link {
+  font-size: 15px;
+  font-weight: 500;
+  color: #333;
+  transition: 0.2s ease;
+}
+
+.nav-link:hover {
+  color: #0070f3;
+}
+
+.nav-sale {
+  color: #e63946 !important;
+  font-weight: 700;
+}
+
+/* SEARCH */
+.search-box {
+  border: 1px solid #ddd;
+  padding: 6px 14px;
+  border-radius: 20px;
+  transition: 0.2s ease;
+  width: 180px;
+}
+
+.search-box:focus {
+  width: 240px;
+  border-color: #0070f3;
+  outline: none;
+}
+
+/* CART BUTTON */
+.right-tools {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.cart-btn {
+  font-size: 22px;
+  cursor: pointer;
+  transition: 0.2s;
+  background: none;
+  border: none;
+}
+
+.cart-btn:hover {
+  transform: scale(1.1);
+}
+/* Loại bỏ gạch chân mặc định */
+.nav-custom-link {
+  text-decoration: none !important; /* Xóa bỏ gạch chân mặc định */
+  color: #444; /* Màu xám đậm sang trọng */
+  font-weight: 500;
+  font-size: 0.95rem;
+  padding: 8px 0;
+  position: relative;
+  transition: all 0.3s ease;
+  display: inline-block;
+}
+
+/* Hiệu ứng khi di chuột vào (Hover) */
+.nav-custom-link:hover, 
+.nav-custom-link.active {
+  color: #000; /* Chuyển sang màu đen rõ nét hơn */
+}
+
+/* Tạo đường gạch chân trang trí ẩn bên dưới */
+.nav-custom-link::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 2px; /* Độ dày của đường gạch */
+  bottom: 0;
+  left: 50%;
+  background-color: #CC6600; /* Màu đỏ thương hiệu */
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  transform: translateX(-50%); /* Giúp đường gạch tỏa ra từ giữa */
+}
+
+/* Hiện đường gạch khi hover hoặc trang đang hoạt động */
+.nav-custom-link:hover::after,
+.nav-custom-link.active::after {
+  width: 100%; /* Đường gạch chạy dài ra 100% */
+}
+
+/* CSS riêng cho mục SALE */
+.pulse-sale {
+  color: #dc3545 !important;
+  font-weight: 700 !important;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}

@@ -1,0 +1,130 @@
+
+
+.carousel-container {
+  position: relative;
+  width: 100%;
+  height: 480px;
+  border-radius: 20px;
+  overflow: hidden;
+  margin: 20px 0;
+}
+
+.carousel-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: opacity 0.6s ease;
+}
+
+.carousel-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: #ffffffbb;
+  padding: 14px;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 20px;
+  font-weight: bold;
+  backdrop-filter: blur(3px);
+  transition: 0.2s ease;
+}
+
+.carousel-btn:hover {
+  background: #fff;
+}
+
+.carousel-btn.left {
+  left: 15px;
+}
+
+.carousel-btn.right {
+  right: 15px;
+}
+
+/* ===========================
+   SECTION TITLE
+=========================== */
+.section-title {
+  font-size: 24px;
+  font-weight: 700;
+  margin-bottom: 16px;
+  margin-top: 30px;
+}
+
+
+/* ===========================
+   CAROUSEL COOLMATE STYLE PRO
+=========================== */
+.carousel-container {
+  position: relative;
+  width: 100%;
+  height: 480px;
+  border-radius: 20px;
+  overflow: hidden;
+  margin: 20px 0;
+  background: #000;
+}
+
+.carousel-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 1;
+  animation: fadeZoom 4s ease-in-out;
+}
+
+/* Hiệu ứng zoom + fade giống Sony / Coolmate */
+@keyframes fadeZoom {
+  0% {
+    opacity: 0.3;
+    transform: scale(1.05);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Nút chuyển slide */
+.carousel-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 45px;
+  height: 45px;
+  background: rgba(255, 255, 255, 0.6);
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 28px;
+  font-weight: bold;
+  color: #333;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  backdrop-filter: blur(5px);
+  transition: 0.25s ease;
+  z-index: 10;
+}
+
+.carousel-btn:hover {
+  background: #fff;
+  transform: translateY(-50%) scale(1.1);
+}
+
+.carousel-btn.left {
+  left: 18px;
+}
+
+.carousel-btn.right {
+  right: 18px;
+}
+
+/* Ẩn nút khi màn nhỏ */
+@media (max-width: 640px) {
+  .carousel-btn {
+    width: 35px;
+    height: 35px;
+    font-size: 20px;
+  }
+}

@@ -1,0 +1,103 @@
+/* FOOTER MAIN */
+.footer {
+  background: #000;
+  color: white;
+  padding: 50px 0 20px;
+  font-family: sans-serif;
+  width: 100%;
+}
+
+/* TOP SECTION */
+.footer-top {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.footer-top h2 {
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.footer-top p {
+  color: #ccc;
+  margin-top: 8px;
+}
+
+.feedback-btn {
+  margin-top: 16px;
+  padding: 10px 26px;
+  border-radius: 40px;
+  background: white;
+  color: black;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.feedback-btn:hover {
+  opacity: 0.85;
+}
+
+/* CONTACT INFO */
+.contact-info {
+  margin-top: 30px;
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  text-align: left;
+}
+
+.contact-info .label {
+  color: #888;
+  font-size: 13px;
+}
+
+.contact-info .value {
+  font-weight: bold;
+  font-size: 18px;
+}
+
+.social span {
+  font-size: 26px;
+  margin-right: 12px;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.social span:hover {
+  transform: scale(1.1);
+}
+
+/* GRID SECTION */
+.footer-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  max-width: 1200px;
+  margin: 0 auto;
+  gap: 40px;
+  padding: 40px 20px;
+}
+
+.footer-grid h3 {
+  font-size: 16px;
+  margin-bottom: 12px;
+  font-weight: bold;
+}
+
+.footer-grid ul li {
+  margin-bottom: 8px;
+  color: #ccc;
+  cursor: pointer;
+}
+
+.footer-grid ul li:hover {
+  color: white;
+}
+
+/* COPYRIGHT */
+.footer-bottom {
+  text-align: center;
+  margin-top: 30px;
+  color: #888;
+  font-size: 14px;
+}

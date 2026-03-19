@@ -1,0 +1,365 @@
+/* 1. Định nghĩa biến màu sắc */
+:root {
+  --accent: #CC6600;      /* Màu cam đất điểm nhấn */
+  --deep-dark: #000011;   /* Màu đen sâu cho text/nút */
+  --bg-light: #F8F9FA;    /* Nền xám trắng hiện đại */
+  --white: #FFFFFF;
+  --transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+/* 2. Cấu hình chung */
+.product-page-theme {
+  background-color: var(--bg-light);
+  color: var(--deep-dark);
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+/* 3. Sidebar Bộ lọc Sticky */
+.filter-sidebar {
+  background: var(--white);
+  border: 1px solid rgba(0,0,0,0.05);
+  border-radius: 20px;
+  position: sticky;
+  top: 90px; /* Cách header một khoảng khi scroll */
+  padding: 1.5rem;
+  transition: var(--transition);
+}
+
+.filter-title {
+  color: var(--deep-dark);
+  font-size: 0.85rem;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  font-weight: 700;
+  border-bottom: 2px solid var(--accent);
+  display: inline-block;
+  margin-bottom: 20px;
+}
+
+/* Tùy chỉnh Input Radio & Checkbox */
+.form-check-input:checked {
+  background-color: var(--accent) !important;
+  border-color: var(--accent) !important;
+  box-shadow: 0 0 0 0.25 margin rgba(204, 102, 0, 0.25);
+}
+
+/* 4. Card sản phẩm Luxury */
+.product-card-luxury {
+  background: var(--white);
+  border-radius: 20px;
+  border: 1px solid rgba(0,0,0,0.02) !important;
+  transition: var(--transition);
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.product-card-luxury:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 15px 35px rgba(0,0,0,0.08) !important;
+}
+
+/* Container ảnh và Hiệu ứng Zoom */
+.image-container {
+  background: #fdfdfd;
+  height: 220px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden; /* Giữ ảnh không tràn khi zoom */
+}
+
+.main-img {
+  max-height: 80%;
+  width: auto;
+  object-fit: contain;
+  transition: transform 0.8s cubic-bezier(0.2, 1, 0.3, 1);
+}
+
+.product-card-luxury:hover .main-img {
+  transform: scale(1.12); /* Phóng to nhẹ khi hover card */
+}
+
+/* Nhãn Sale */
+.badge-sale {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  background-color: var(--accent);
+  color: var(--white);
+  font-size: 10px;
+  font-weight: bold;
+  padding: 4px 12px;
+  border-radius: 50px;
+  z-index: 2;
+  box-shadow: 0 4px 10px rgba(204, 102, 0, 0.2);
+}
+
+/* 5. Thông tin và Giá tiền */
+.product-title-limit {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  height: 40px;
+  font-size: 0.95rem;
+  line-height: 1.4;
+  font-weight: 600;
+  color: var(--deep-dark);
+}
+
+.price-text {
+  color: var(--accent);
+  font-weight: 800;
+  font-size: 1.15rem;
+}
+
+/* 6. Nút Thêm vào giỏ hàng (Icon style) */
+.btn-add-cart {
+  background: var(--deep-dark);
+  color: var(--white);
+  border: none;
+  width: 40px;
+  height: 40px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: var(--transition);
+}
+
+.btn-add-cart:hover {
+  background: var(--accent);
+  transform: translateY(-3px) rotate(5deg);
+  box-shadow: 0 5px 15px rgba(204, 102, 0, 0.3);
+}
+
+/* 7. Skeleton Loading Animation */
+.skeleton-loader {
+  background: #eee;
+  background: linear-gradient(110deg, #ececec 8%, #f5f5f5 18%, #ececec 33%);
+  background-size: 200% 100%;
+  animation: shine 1.5s linear infinite;
+}
+
+@keyframes shine {
+  to { background-position-x: -200%; }
+}
+
+/* Helper Classes */
+.color-accent { color: var(--accent); }
+.ls-1 { letter-spacing: 1px; }
+
+
+.btn-add-cart-minimal {
+  background: var(--deep-dark);
+  color: var(--white);
+  border: none;
+  width: 40px;
+  height: 40px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: var(--transition);
+}
+
+.btn-add-cart-minimal:hover {
+  background: var(--accent);
+  transform: translateY(-3px) rotate(5deg);
+  box-shadow: 0 5px 15px rgba(204, 102, 0, 0.3);
+}
+
+
+
+/* Badge Sale nổi bật */
+.badge-sale-hot {
+  position: absolute;
+  top: 15px;
+  left: 15px;
+  background: linear-gradient(45deg, #d9534f, #CC6600);
+  color: white;
+  padding: 5px 12px;
+  border-radius: 8px;
+  font-weight: 900;
+  font-size: 14px;
+  box-shadow: 0 4px 15px rgba(217, 83, 79, 0.4);
+  z-index: 2;
+  animation: pulse-red 2s infinite;
+}
+
+@keyframes pulse-red {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+  100% { transform: scale(1); }
+}
+
+/* Border cam khi hover cho trang sale */
+.border-accent-hover:hover {
+    border: 1px solid var(--accent) !important;
+}
+
+/* Thanh tiến trình stock */
+.progress {
+    background-color: #eee;
+}
+
+/* Hero Sale Banner */
+.sale-hero {
+    position: relative;
+    overflow: hidden;
+}
+
+.sale-hero::after {
+    content: "%";
+    position: absolute;
+    right: -50px;
+    bottom: -50px;
+    font-size: 300px;
+    font-weight: 900;
+    color: rgba(255, 255, 255, 0.03);
+    z-index: 0;
+}
+
+/* Thumbnail images */
+.thumb-img {
+  width: 80px;
+  height: 80px;
+  object-fit: cover;
+  cursor: pointer;
+  transition: all 0.2s;
+  flex-shrink: 0;
+}
+
+.thumb-img:hover {
+  opacity: 0.8;
+}
+
+.border-accent {
+  border-color: #CC6600 !important;
+  border-width: 2px !important;
+}
+
+.hover-accent:hover {
+  color: #CC6600 !important;
+}
+
+.ls-1 {
+  letter-spacing: 1.5px;
+}
+
+.extra-small {
+  font-size: 11px;
+}
+
+/* Ẩn scrollbar nhưng vẫn scroll được */
+.custom-scrollbar::-webkit-scrollbar {
+  height: 4px;
+}
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: #CC6600;
+  border-radius: 10px;
+}
+
+.main-image-container img {
+  transition: transform 0.5s ease;
+}
+
+.main-image-container:hover img {
+  transform: scale(1.05);
+}
+/* Container chứa toàn bộ ảnh */
+.main-image-container {
+  position: relative;
+  z-index: 1; /* Thấp hơn Header (1000) */
+  overflow: hidden;
+  border-radius: 20px;
+}
+
+/* Các ảnh thumbnail phía dưới */
+.thumb-img {
+  position: relative;
+  z-index: 1;
+}
+
+/* Thêm hiệu ứng hover cho thumbnail
+.thumb-img-v {
+  width: 80px;
+  height: 80px;
+  object-fit: cover;
+  cursor: pointer;
+  transition: all 0.2s;
+  flex-shrink: 0; /* Không cho ảnh bị bóp méo */
+
+
+.thumb-img-v:hover {
+  border-color: #CC6600 !important;
+  transform: translateX(3px);
+}
+
+.custom-scrollbar::-webkit-scrollbar {
+  width: 3px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: #CC6600;
+  border-radius: 10px;
+}
+
+#productTab .nav-link {
+  color: #888;
+  background: transparent;
+  transition: 0.3s;
+}
+
+#productTab .nav-link.active {
+  color: #CC6600;
+  border-color: #CC6600 !important;
+}
+
+.content-area img {
+  max-width: 100%;
+  height: auto;
+}
+
+
+
+/* Container bao quanh mỗi ảnh nhỏ */
+.thumb-item {
+    width: 80px;         /* Chiều rộng cố định */
+    height: 80px;        /* Chiều cao cố định bằng chiều rộng để tạo hình vuông */
+    cursor: pointer;
+    transition: all 0.2s ease;
+    overflow: hidden;    /* Ẩn phần ảnh dư thừa */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #fff;
+    flex-shrink: 0;      /* Giữ nguyên kích thước */
+}
+
+/* Ảnh nhỏ bên trong */
+.thumb-img-v {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;   /* Cắt ảnh để lấp đầy khung mà không bị méo */
+    display: block;
+}
+
+.thumb-item:hover {
+    border-color: #CC6600 !important;
+}
+
+/* Khung ảnh lớn bên phải */
+.main-image-container {
+    height: 550px;       /* Chiều cao bằng với cột thumbnail tổng */
+    background-color: #fff;
+}
+
+.main-image-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain; /* Ảnh chính nên dùng contain để hiện toàn bộ sản phẩm */
+}
