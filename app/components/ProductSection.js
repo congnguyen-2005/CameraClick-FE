@@ -12,7 +12,7 @@ export default function ProductSection({ title, products, link }) {
 
   if (!products || products.length === 0 || !mounted) return null;
 
-  const API_URL = process.env.NEXT_PUBLIC_API_URL || "NEXT_PUBLIC_API_URL=https://cameraclick-be-production.up.railway.app/api";
+  const API_URL = process.env.NEXT_PUBLIC_API_URL || "https://cameraclick-be-production.up.railway.app/api";
 
   // Hàm định dạng giá tiền
   const formatPrice = (price) => {

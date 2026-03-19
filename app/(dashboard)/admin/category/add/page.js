@@ -46,7 +46,7 @@ export default function AddCategory() {
     if (image) form.append("image", image);
 
     try {
-      const res = await fetch("NEXT_PUBLIC_API_URL=https://cameraclick-be-production.up.railway.app/api/api/category", {
+      const res = await fetch("https://cameraclick-be-production.up.railway.app/api/api/category", {
         method: "POST",
         body: form,
       });

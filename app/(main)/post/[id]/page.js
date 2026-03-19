@@ -13,7 +13,7 @@ export default function BlogDetail() {
   const [loading, setLoading] = useState(true);
   const [mounted, setMounted] = useState(false);
 
-  const IMG_URL = "NEXT_PUBLIC_API_URL=https://cameraclick-be-production.up.railway.app/api/storage/";
+  const IMG_URL = "https://cameraclick-be-production.up.railway.app/api/storage/";
 
   useEffect(() => {
     setMounted(true);

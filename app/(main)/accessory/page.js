@@ -22,7 +22,7 @@ export default function AccessoryPage() {
   const [addingId, setAddingId] = useState(null);
   const [successId, setSuccessId] = useState(null);
 
-  const API_URL = process.env.NEXT_PUBLIC_API_URL || "NEXT_PUBLIC_API_URL=https://cameraclick-be-production.up.railway.app/api";
+  const API_URL = process.env.NEXT_PUBLIC_API_URL || "https://cameraclick-be-production.up.railway.app/api";
 
   const priceOptions = [
     { id: 0, label: "Tất cả mức giá", min: 0, max: Infinity },

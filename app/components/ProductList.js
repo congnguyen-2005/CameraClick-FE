@@ -5,7 +5,7 @@ import { ShoppingBag, ChevronRight } from "lucide-react";
 
 export default function ProductList({ title, products, loading }) {
   const [mounted, setMounted] = useState(false);
-  const API_URL = process.env.NEXT_PUBLIC_API_URL || "NEXT_PUBLIC_API_URL=https://cameraclick-be-production.up.railway.app/api";
+  const API_URL = process.env.NEXT_PUBLIC_API_URL || "https://cameraclick-be-production.up.railway.app/api";
 
   useEffect(() => {
     setMounted(true);
