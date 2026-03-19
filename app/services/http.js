@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const http = axios.create({
-  baseURL: "NEXT_PUBLIC_API_URL=https://cameraclick-be-production.up.railway.app/api",
+  baseURL: process.env.NEXT_PUBLIC_API_URL || "https://cameraclick-be-production.up.railway.app/api",
   headers: {
 
     "Accept": "application/json",
