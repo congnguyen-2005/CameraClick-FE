@@ -12,7 +12,7 @@ function VNPayResultContent() {
   const router = useRouter();
   const [status, setStatus] = useState("loading"); // loading, success, error
   const [message, setMessage] = useState("Đang xác thực giao dịch an toàn...");
-  const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000";
+  const API_URL = process.env.NEXT_PUBLIC_API_URL || "NEXT_PUBLIC_API_URL=https://cameraclick-be-production.up.railway.app/api";
 
   useEffect(() => {
     const verifyPayment = async () => {

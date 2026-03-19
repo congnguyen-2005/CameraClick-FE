@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 
-const API_URL = "http://localhost:8000";
+const API_URL = "NEXT_PUBLIC_API_URL=https://cameraclick-be-production.up.railway.app/api";
 const IMG_STORAGE = `${API_URL}/storage/`;
 
 const SafeImage = ({ src, className, style, alt }) => {

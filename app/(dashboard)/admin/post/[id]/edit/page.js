@@ -147,7 +147,7 @@ export default function EditPost({ params }) {
                   <p className="small text-muted fw-bold text-uppercase ls-1 mb-2">Ảnh đang hiển thị</p>
                   <div className="rounded-4 overflow-hidden border shadow-sm">
                     <img
-                      src={`http://localhost:8000/storage/${form.image}`}
+                      src={`NEXT_PUBLIC_API_URL=https://cameraclick-be-production.up.railway.app/api/storage/${form.image}`}
                       className="w-100 object-fit-cover"
                       style={{ height: "180px" }}
                       alt="Current"

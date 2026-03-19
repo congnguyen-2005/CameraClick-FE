@@ -28,7 +28,7 @@ export default function HomePage() {
   const [loading, setLoading] = useState(true);
   const [email, setEmail] = useState("");
 
-  const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000";
+  const API_URL = process.env.NEXT_PUBLIC_API_URL || "NEXT_PUBLIC_API_URL=https://cameraclick-be-production.up.railway.app/api";
   
   const getImageUrl = (imagePath) => {
     if (!imagePath) return "https://placehold.co/600x800/222/fff?text=Sony+Alpha";

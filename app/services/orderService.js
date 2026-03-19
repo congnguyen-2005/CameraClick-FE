@@ -1,7 +1,7 @@
 import axios from "axios";
 
 // Đảm bảo dùng 127.0.0.1 để tránh lỗi Network Error trên Windows
-const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://127.0.0.1:8000";
+const API_URL = process.env.NEXT_PUBLIC_API_URL || "NEXT_PUBLIC_API_URL=https://cameraclick-be-production.up.railway.app/api";
 
 const getAuthHeader = () => {
     const token = typeof window !== "undefined" ? localStorage.getItem("token") : null;

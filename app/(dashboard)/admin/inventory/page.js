@@ -26,7 +26,7 @@ export default function InventoryAdmin() {
   const [searchTerm, setSearchTerm] = useState("");
   const [alerts, setAlerts] = useState([]);
 
-  const IMAGE_URL = `${process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000"}/storage/`;
+  const IMAGE_URL = `${process.env.NEXT_PUBLIC_API_URL || "NEXT_PUBLIC_API_URL=https://cameraclick-be-production.up.railway.app/api"}/storage/`;
 
   // Sử dụng chuỗi rỗng để tránh dính số 0 ở đầu
   const [form, setForm] = useState({ id: null, product_id: null, qty: "", price_root: "" });

@@ -25,7 +25,7 @@ export default function LensPage() {
 
   const [lightboxController, setLightboxController] = useState({ toggler: false, source: "" });
 
-  const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000";
+  const API_URL = process.env.NEXT_PUBLIC_API_URL || "NEXT_PUBLIC_API_URL=https://cameraclick-be-production.up.railway.app/api";
 
   const priceOptions = [
     { id: 0, label: "Tất cả mức giá", min: 0, max: Infinity },

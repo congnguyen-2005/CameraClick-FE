@@ -41,7 +41,7 @@ export default function ProductImagePage() {
   const getImageUrl = (path) => {
     if (!path) return "/assets/images/no-image.jpg";
     if (path.startsWith("http")) return path;
-    const baseUrl = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000";
+    const baseUrl = process.env.NEXT_PUBLIC_API_URL || "NEXT_PUBLIC_API_URL=https://cameraclick-be-production.up.railway.app/api";
     if (path.startsWith("storage/")) return `${baseUrl}/${path}`;
     return `${baseUrl}/storage/${path}`;
   };

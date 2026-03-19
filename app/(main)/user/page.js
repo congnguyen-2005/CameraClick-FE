@@ -9,7 +9,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { User, Lock, LogOut, Camera, AlertCircle } from "lucide-react";
 
 // Cấu hình đường dẫn API
-const API_URL = "http://localhost:8000";
+const API_URL = "NEXT_PUBLIC_API_URL=https://cameraclick-be-production.up.railway.app/api";
 const IMG_STORAGE = `${API_URL}/storage/`;
 
 export default function UserPage() {

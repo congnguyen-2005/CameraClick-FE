@@ -10,7 +10,7 @@ import UserService from "../../services/userService";
 
 export default function CheckoutPage() {
   const router = useRouter();
-  const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000";
+  const API_URL = process.env.NEXT_PUBLIC_API_URL || "NEXT_PUBLIC_API_URL=https://cameraclick-be-production.up.railway.app/api";
 
   // State dữ liệu
   const [cart, setCart] = useState([]);

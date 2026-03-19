@@ -3,7 +3,7 @@ import React, { useEffect, useRef, useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 export default function Carousel({ banners, loading }) {
-  const API_URL = "http://localhost:8000/storage/";
+  const API_URL = "NEXT_PUBLIC_API_URL=https://cameraclick-be-production.up.railway.app/api/storage/";
   const carouselRef = useRef(null);
   const [mounted, setMounted] = useState(false);
 

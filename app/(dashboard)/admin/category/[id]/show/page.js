@@ -61,7 +61,7 @@ export default function ShowCategory() {
             {/* LEFT SIDE: IMAGE PREVIEW */}
             <div className="col-md-5 bg-dark d-flex align-items-center justify-content-center overflow-hidden" style={{ minHeight: "350px" }}>
               <img
-                src={cate.image ? `http://127.0.0.1:8000/${cate.image}` : "/no-image.png"}
+                src={cate.image ? `NEXT_PUBLIC_API_URL=https://cameraclick-be-production.up.railway.app/api/${cate.image}` : "/no-image.png"}
                 className="w-100 h-100 object-fit-cover opacity-75"
                 alt={cate.name}
               />
