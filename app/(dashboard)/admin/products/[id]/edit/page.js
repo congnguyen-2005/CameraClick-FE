@@ -32,7 +32,7 @@ export default function EditProduct({ params }) {
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
 
- useEffect(() => {
+  useEffect(() => {
     if (!id) return;
     const fetchData = async () => {
       try {
@@ -63,17 +63,22 @@ export default function EditProduct({ params }) {
           setProductAttributes(formattedAttrs);
         }
 
-        // Xử lý link ảnh thông minh (Cloudinary hoặc Local)
+        // Xử lý link ảnh thông minh (Chống lặp chữ storage và gỡ đuôi /api)
         let imgUrl = null;
         if (p.thumbnail) {
           if (p.thumbnail.startsWith('http')) {
             imgUrl = p.thumbnail; // Nếu là Cloudinary, dùng luôn link gốc
           } else {
-            // Nếu là link Storage cũ, gỡ bỏ chữ 'storage/' bị thừa nếu có
-            const cleanPath = p.thumbnail.startsWith('storage/') 
-              ? p.thumbnail.replace('storage/', '') 
-              : p.thumbnail;
-            imgUrl = `${process.env.NEXT_PUBLIC_API_URL}/storage/${cleanPath}`;
+            // Lấy URL gốc, cắt bỏ chữ '/api' ở cuối đi
+            const baseUrl = (process.env.NEXT_PUBLIC_API_URL || '').replace(/\/api\/?$/, '');
+            
+            // Dọn dẹp chữ 'storage/' bị thừa nếu có
+            let cleanPath = p.thumbnail;
+            if (cleanPath.startsWith('storage/')) {
+              cleanPath = cleanPath.replace('storage/', '');
+            }
+            
+            imgUrl = `${baseUrl}/storage/${cleanPath}`;
           }
         }
         setImagePreview(imgUrl);
