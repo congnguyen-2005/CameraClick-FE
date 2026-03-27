@@ -66,30 +66,48 @@ export default function AddProduct() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (!form.name || !form.category_id || !form.price_buy) return alert("Vui lòng nhập đầy đủ!");
+    if (!form.name || !form.category_id || !form.price_buy) {
+        return alert("Vui lòng nhập Tên, Danh mục và Giá!");
+    }
+    
     setSaving(true);
     try {
       const formData = new FormData();
-      const slug = form.name.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/[^\w\s-]/g, "").replace(/\s+/g, "-");
+      
+      // Gửi các trường cơ bản
       formData.append("name", form.name);
-      formData.append("slug", slug);
       formData.append("price_buy", form.price_buy);
       formData.append("category_id", form.category_id);
       formData.append("stock", form.stock || 0); 
       formData.append("description", form.description || "");
       formData.append("content", form.content || "");
-      if (image instanceof File) formData.append("thumbnail", image);
+      
+      // Gửi file ảnh (Bắt buộc dùng key là 'thumbnail' để khớp với Backend)
+      if (image) {
+        formData.append("thumbnail", image);
+      }
+
+      // Gửi mảng thuộc tính (Laravel sẽ nhận diện được mảng này)
       attributes.forEach((attr, index) => {
         if (attr.attribute_id && attr.value) {
           formData.append(`attributes[${index}][attribute_id]`, attr.attribute_id);
           formData.append(`attributes[${index}][value]`, attr.value);
         }
       });
-      await ProductService.create(formData);
-      router.push("/admin/products");
+
+      // Gọi API
+      const response = await ProductService.create(formData);
+      
+      if(response.data.status) {
+          alert("Tạo sản phẩm thành công!");
+          router.push("/admin/products");
+      }
     } catch (err) {
-      alert("Lỗi: " + (err.response?.data?.message || "Không thể lưu"));
-    } finally { setSaving(false); }
+      console.error("Lỗi khi lưu:", err);
+      alert("Lỗi: " + (err.response?.data?.message || "Không thể lưu sản phẩm"));
+    } finally { 
+      setSaving(false); 
+    }
   };
 
   return (

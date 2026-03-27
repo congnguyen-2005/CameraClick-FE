@@ -32,7 +32,7 @@ export default function EditProduct({ params }) {
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
 
-  useEffect(() => {
+ useEffect(() => {
     if (!id) return;
     const fetchData = async () => {
       try {
@@ -63,9 +63,20 @@ export default function EditProduct({ params }) {
           setProductAttributes(formattedAttrs);
         }
 
-        setImagePreview(
-          p.thumbnail ? `${process.env.NEXT_PUBLIC_API_URL}/storage/${p.thumbnail}` : null
-        );
+        // Xử lý link ảnh thông minh (Cloudinary hoặc Local)
+        let imgUrl = null;
+        if (p.thumbnail) {
+          if (p.thumbnail.startsWith('http')) {
+            imgUrl = p.thumbnail; // Nếu là Cloudinary, dùng luôn link gốc
+          } else {
+            // Nếu là link Storage cũ, gỡ bỏ chữ 'storage/' bị thừa nếu có
+            const cleanPath = p.thumbnail.startsWith('storage/') 
+              ? p.thumbnail.replace('storage/', '') 
+              : p.thumbnail;
+            imgUrl = `${process.env.NEXT_PUBLIC_API_URL}/storage/${cleanPath}`;
+          }
+        }
+        setImagePreview(imgUrl);
 
       } catch (err) {
         console.error("Lỗi tải dữ liệu:", err);

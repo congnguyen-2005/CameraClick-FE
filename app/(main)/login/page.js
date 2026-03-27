@@ -81,30 +81,7 @@ export default function LoginPage() {
             </div>
           </div>
 
-          <div className="input-group-luxury mb-4">
-            <div className="d-flex justify-content-between">
-              <label className="uppercase ls-1">Mật khẩu</label>
-              <Link href="/forgot-password" style={{fontSize: '11px'}} className="text-orange text-decoration-none fw-bold">Quên mật khẩu?</Link>
-            </div>
-            <div className="input-field">
-              <Lock size={18} className="icon" />
-              <input
-                type={showPassword ? "text" : "password"}
-                placeholder="••••••••"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                required
-              />
-              <button 
-                type="button" 
-                className="btn-show-pass" 
-                onClick={() => setShowPassword(!showPassword)}
-              >
-                {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
-              </button>
-            </div>
-          </div>
-
+          
           <button className="btn-auth-luxury w-100" disabled={loading}>
             {loading ? (
               <span className="spinner-border spinner-border-sm me-2"></span>

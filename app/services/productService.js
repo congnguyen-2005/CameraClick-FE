@@ -30,7 +30,11 @@ const ProductService = {
 
     // 4. Thêm mới
     create(data) {
-        return http.post("/products", data);
+        return http.post("/products", data, {
+      headers: {
+        "Content-Type": "multipart/form-data", // Quan trọng để gửi file
+      },
+    });
     },
 
     // 5. Cập nhật

@@ -69,8 +69,16 @@
 
     const getImageUrl = (path) => {
       if (!path) return "https://placehold.co/400x400?text=No+Image";
+      
+      // 1. Nếu là link Cloudinary (đã có http) -> Trả về luôn
       if (path.startsWith("http")) return path;
-      return `${process.env.NEXT_PUBLIC_API_URL}/storage/${path}`;
+      
+      // 2. Xử lý lỗi "Double Storage": 
+      // Nếu path là "storage/uploads/..." -> Xóa chữ "storage/" ở đầu đi
+      const cleanPath = path.startsWith("storage/") ? path.replace("storage/", "") : path;
+      
+      // 3. Trả về link chuẩn (API_URL + /storage/ + path đã làm sạch)
+      return `${process.env.NEXT_PUBLIC_API_URL}/storage/${cleanPath}`;
     };
 
     const getStock = (p) => p.product_store?.qty ?? p.stock ?? 0;
