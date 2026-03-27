@@ -1,4 +1,4 @@
-  "use client";
+"use client";
 
   import Link from "next/link";
   import { useEffect, useState, useMemo } from "react";
@@ -70,15 +70,19 @@
     const getImageUrl = (path) => {
       if (!path) return "https://placehold.co/400x400?text=No+Image";
       
-      // 1. Nếu là link Cloudinary (đã có http) -> Trả về luôn
+      // 1. Nếu là link có sẵn (Cloudinary hoặc web khác)
       if (path.startsWith("http")) return path;
       
-      // 2. Xử lý lỗi "Double Storage": 
-      // Nếu path là "storage/uploads/..." -> Xóa chữ "storage/" ở đầu đi
-      const cleanPath = path.startsWith("storage/") ? path.replace("storage/", "") : path;
+      // 2. Cắt bỏ chữ /api ở cuối URL gốc đi
+      const baseUrl = (process.env.NEXT_PUBLIC_API_URL || '').replace(/\/api\/?$/, '');
       
-      // 3. Trả về link chuẩn (API_URL + /storage/ + path đã làm sạch)
-      return `${process.env.NEXT_PUBLIC_API_URL}/storage/${cleanPath}`;
+      // 3. Dọn dẹp chữ storage/ bị lặp
+      let cleanPath = path;
+      if (cleanPath.startsWith('storage/')) {
+        cleanPath = cleanPath.replace('storage/', '');
+      }
+      
+      return `${baseUrl}/storage/${cleanPath}`;
     };
 
     const getStock = (p) => p.product_store?.qty ?? p.stock ?? 0;
