@@ -3,10 +3,10 @@ import React, { useEffect, useRef, useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 export default function Carousel({ banners, loading }) {
-  // Logic xử lý link ảnh: Chuyển .../api thành .../storage
-  const STORAGE_URL = process.env.NEXT_PUBLIC_API_URL 
-    ? process.env.NEXT_PUBLIC_API_URL.replace(/\/api$/, '') + "/storage/"
-    : "https://cameraclick-be-production.up.railway.app/storage/";
+  // Logic chuẩn hóa link gốc (Fix lỗi /api)
+  const API_URL = process.env.NEXT_PUBLIC_API_URL || "https://cameraclick-be-production.up.railway.app/api";
+  const baseUrl = API_URL.replace(/\/api\/?$/, '');
+  const STORAGE_URL = `${baseUrl}/storage/`;
 
   const carouselRef = useRef(null);
   const [mounted, setMounted] = useState(false);
@@ -34,6 +34,17 @@ export default function Carousel({ banners, loading }) {
     </div>
   );
 
+  const getBannerImageUrl = (path) => {
+      if(!path) return "https://images.unsplash.com/photo-1516035069371-29a1b244cc32";
+      if(path.startsWith('http')) return path.replace(/^http:\/\//i, 'https://');
+      
+      let cleanPath = path;
+      if (cleanPath.startsWith('storage/')) {
+          cleanPath = cleanPath.replace('storage/', '');
+      }
+      return `${STORAGE_URL}${cleanPath}`;
+  };
+
   const renderCarouselContent = (items) => (
     <div id="homeCarousel" ref={carouselRef} className="carousel slide carousel-fade shadow-lg overflow-hidden rounded-5" data-bs-ride="carousel">
       <div className="carousel-indicators mb-4">
@@ -47,8 +58,7 @@ export default function Carousel({ banners, loading }) {
           <div key={banner.id || index} className={`carousel-item ${index === 0 ? "active" : ""}`} >
             <div className="zoom-container">
               <img
-                // KIỂM TRA LINK ẢNH: Nếu là link tuyệt đối (http) thì dùng luôn, nếu là tên file thì nối với STORAGE_URL
-                src={banner.image ? (banner.image.startsWith('http') ? banner.image : `${STORAGE_URL}${banner.image}`) : "https://images.unsplash.com/photo-1516035069371-29a1b244cc32"}
+                src={getBannerImageUrl(banner.image)}
                 className="d-block w-100 object-fit-cover"
                 style={{ height: "550px" }}
                 alt={banner.name || "Banner"}
@@ -72,7 +82,6 @@ export default function Carousel({ banners, loading }) {
     <div className="container py-4">
       {!banners || banners.length === 0 ? renderCarouselContent([{ image: "", name: "Welcome to CameraClick" }]) : renderCarouselContent(banners)}
       <style jsx>{`
-        /* Giữ nguyên phần CSS của bạn */
         .fw-black { font-weight: 900; }
         .ls-2 { letter-spacing: 0.2em; }
         .caption-content { background: linear-gradient(to right, rgba(0,0,0,0.7), transparent); border-left: 5px solid #ffc107; }

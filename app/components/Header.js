@@ -123,7 +123,7 @@ export default function Header() {
           {/* 1. Logo */}
           <Link href="/" className="logo-brand text-decoration-none">
             <span className="logo-text">
-              CAM<span style={{ color: "#CC6600" }}>STORE</span>
+              CAMERA<span style={{ color: "#CC6600" }}>CLICK</span>
             </span>
           </Link>
 

@@ -7,7 +7,7 @@ import {
 } from "lucide-react"; 
 import "bootstrap/dist/css/bootstrap.min.css";
 
-// Components (Giả định bạn đã có các component này)
+// Components
 import Carousel from "../components/Carousel";
 import ProductSection from "../components/ProductSection";
 
@@ -30,11 +30,23 @@ export default function HomePage() {
 
   const API_URL = process.env.NEXT_PUBLIC_API_URL || "https://cameraclick-be-production.up.railway.app/api";
   
+  // HÀM XỬ LÝ ẢNH CHUẨN (Fix /api và ép HTTPS)
   const getImageUrl = (imagePath) => {
     if (!imagePath) return "https://placehold.co/600x800/222/fff?text=Sony+Alpha";
-    if (imagePath.startsWith("http")) return imagePath;
-    const cleanPath = imagePath.replace(/^public\//, '');
-    return `${API_URL}/storage/${cleanPath}`;
+    
+    // Nếu là link Cloudinary hoặc web khác (ép HTTPS chống Mixed Content)
+    if (imagePath.startsWith("http")) {
+        return imagePath.replace(/^http:\/\//i, 'https://');
+    }
+    
+    const baseUrl = API_URL.replace(/\/api\/?$/, '');
+    let cleanPath = imagePath.replace(/^public\//, '');
+    
+    // Chống lặp chữ storage
+    if (cleanPath.startsWith('storage/')) {
+        cleanPath = cleanPath.replace('storage/', '');
+    }
+    return `${baseUrl}/storage/${cleanPath}`;
   };
 
   useEffect(() => {
@@ -50,7 +62,6 @@ export default function HomePage() {
         const allProducts = productRes.data?.data || [];
         const allCats = catRes.data?.data || [];
 
-        // Phân loại sản phẩm thông minh hơn dựa trên category_id hoặc name
         setData({
           new_products: [...allProducts].sort((a, b) => b.id - a.id).slice(0, 8),
           cameras: allProducts.filter(p => p.category_id === 1 || p.category_name?.toLowerCase().includes('máy')).slice(0, 8),
@@ -83,7 +94,7 @@ export default function HomePage() {
         <Carousel banners={banners} loading={loading} />
       </section>
 
-      {/* 2. DỊCH VỤ NỔI BẬT - Glassmorphism touch */}
+      {/* 2. DỊCH VỤ NỔI BẬT */}
       <section className="container position-relative z-index-2" style={{ marginTop: "-3rem" }}>
         <div className="row g-0 shadow-lg rounded-4 overflow-hidden border-0">
           {[
@@ -113,7 +124,7 @@ export default function HomePage() {
            </div>
         ) : (
           <>
-            {/* 3. DANH MỤC - Tinh chỉnh hiệu ứng Hover */}
+            {/* 3. DANH MỤC */}
             <section className="container py-5 mt-4">
                 <div className="text-center mb-5">
                     <span className="text-muted x-small uppercase ls-2 mb-2 d-block">Lựa chọn của bạn</span>
@@ -300,9 +311,7 @@ export default function HomePage() {
         .bottom-left { bottom: -100px; left: -100px; }
         
         @media (max-width: 768px) {
-            .scroll-mobile {
-                padding-left: 1rem;
-            }
+            .scroll-mobile { padding-left: 1rem; }
             .luxury-cat-card { height: 180px; }
         }
       `}</style>
