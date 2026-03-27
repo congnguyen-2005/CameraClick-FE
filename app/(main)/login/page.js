@@ -67,6 +67,7 @@ export default function LoginPage() {
         )}
 
         <form onSubmit={handleLogin}>
+          {/* TRƯỜNG NHẬP EMAIL */}
           <div className="input-group-luxury mb-4">
             <label className="uppercase ls-1">Địa chỉ Email</label>
             <div className="input-field">
@@ -81,8 +82,30 @@ export default function LoginPage() {
             </div>
           </div>
 
+          {/* TRƯỜNG NHẬP MẬT KHẨU (Đã khôi phục) */}
+          <div className="input-group-luxury mb-4">
+            <label className="uppercase ls-1">Mật khẩu</label>
+            <div className="input-field">
+              <Lock size={18} className="icon" />
+              <input
+                type={showPassword ? "text" : "password"}
+                placeholder="••••••••"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                required
+              />
+              <button
+                type="button"
+                className="btn-show-pass"
+                onClick={() => setShowPassword(!showPassword)}
+                title={showPassword ? "Ẩn mật khẩu" : "Hiện mật khẩu"}
+              >
+                {showPassword ? <EyeOff size={16} /> : <Eye size={16} />}
+              </button>
+            </div>
+          </div>
           
-          <button className="btn-auth-luxury w-100" disabled={loading}>
+          <button className="btn-auth-luxury w-100 mt-2" disabled={loading}>
             {loading ? (
               <span className="spinner-border spinner-border-sm me-2"></span>
             ) : (
@@ -105,7 +128,6 @@ export default function LoginPage() {
           align-items: center;
           justify-content: center;
           background: #e8e8e8ff;
-         
           padding: 20px;
         }
 
@@ -156,7 +178,7 @@ export default function LoginPage() {
 
         .input-field input {
           width: 100%;
-          padding: 15px 15px 15px 45px;
+          padding: 15px 45px 15px 45px; /* Điều chỉnh padding để không lẹm chữ vào icon con mắt */
           border-radius: 15px;
           border: 1px solid #eee;
           background: #fdfdfd;
@@ -178,6 +200,14 @@ export default function LoginPage() {
           border: none;
           color: #ccc;
           padding: 0;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          transition: 0.3s;
+        }
+        
+        .btn-show-pass:hover {
+          color: #CC6600;
         }
 
         .btn-auth-luxury {

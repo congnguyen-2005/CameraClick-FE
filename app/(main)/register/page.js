@@ -3,7 +3,6 @@
 import React, { useState } from "react";
 import { useRouter } from "next/navigation";
 import AuthService from "../../services/authService";
-// THÊM CheckCircle VÀO DANH SÁCH IMPORT
 import { 
   User, 
   Mail, 
@@ -14,7 +13,9 @@ import {
   ShieldCheck, 
   UserPlus, 
   Fingerprint,
-  CheckCircle 
+  CheckCircle,
+  Eye, 
+  EyeOff
 } from "lucide-react";
 import Link from "next/link";
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -32,6 +33,10 @@ export default function RegisterPage() {
   const [loading, setLoading] = useState(false);
   const [errorMsg, setErrorMsg] = useState("");
   const [successMsg, setSuccessMsg] = useState("");
+  
+  // State ẩn/hiện mật khẩu
+  const [showPassword, setShowPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -124,7 +129,7 @@ export default function RegisterPage() {
                 </div>
               )}
 
-              {/* HIỂN THỊ THÀNH CÔNG (ĐÃ FIX LỖI CheckCircle) */}
+              {/* HIỂN THỊ THÀNH CÔNG */}
               {successMsg && (
                 <div className="alert-custom success mb-4 animate-fade-in">
                   <CheckCircle size={18} /> <span>{successMsg}</span>
@@ -175,7 +180,21 @@ export default function RegisterPage() {
                       <label>Mật khẩu</label>
                       <div className="input-wrapper">
                         <Lock size={18} className="input-icon" />
-                        <input type="password" name="password" placeholder="••••••" required onChange={handleChange} />
+                        <input 
+                          type={showPassword ? "text" : "password"} 
+                          name="password" 
+                          placeholder="••••••" 
+                          required 
+                          onChange={handleChange} 
+                        />
+                        <button
+                          type="button"
+                          className="btn-show-pass"
+                          onClick={() => setShowPassword(!showPassword)}
+                          title={showPassword ? "Ẩn mật khẩu" : "Hiện mật khẩu"}
+                        >
+                          {showPassword ? <EyeOff size={16} /> : <Eye size={16} />}
+                        </button>
                       </div>
                     </div>
                   </div>
@@ -184,7 +203,21 @@ export default function RegisterPage() {
                       <label>Xác nhận</label>
                       <div className="input-wrapper">
                         <Lock size={18} className="input-icon" />
-                        <input type="password" name="password_confirmation" placeholder="••••••" required onChange={handleChange} />
+                        <input 
+                          type={showConfirmPassword ? "text" : "password"} 
+                          name="password_confirmation" 
+                          placeholder="••••••" 
+                          required 
+                          onChange={handleChange} 
+                        />
+                        <button
+                          type="button"
+                          className="btn-show-pass"
+                          onClick={() => setShowConfirmPassword(!showConfirmPassword)}
+                          title={showConfirmPassword ? "Ẩn mật khẩu" : "Hiện mật khẩu"}
+                        >
+                          {showConfirmPassword ? <EyeOff size={16} /> : <Eye size={16} />}
+                        </button>
                       </div>
                     </div>
                   </div>
@@ -264,7 +297,7 @@ export default function RegisterPage() {
 
         .input-wrapper input {
           width: 100%;
-          padding: 14px 15px 14px 45px;
+          padding: 14px 45px 14px 45px; /* Để trống 2 bên cho icon */
           background: #f9f9f9;
           border: 1.5px solid #eee;
           border-radius: 15px;
@@ -278,6 +311,23 @@ export default function RegisterPage() {
           background: #fff;
           border-color: #111;
           box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+
+        /* Nút con mắt Hiện/Ẩn mật khẩu */
+        .btn-show-pass {
+          position: absolute;
+          right: 15px;
+          background: none;
+          border: none;
+          color: #ccc;
+          padding: 0;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          transition: 0.3s;
+        }
+        .btn-show-pass:hover {
+          color: #CC6600;
         }
 
         .btn-alpha-submit {
