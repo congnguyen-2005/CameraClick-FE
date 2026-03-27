@@ -30,7 +30,17 @@ export default function ProductPage() {
     source: "",
   });
 
-  const API_URL = process.env.NEXT_PUBLIC_API_URL || "https://cameraclick-be-production.up.railway.app/api";
+  // HÀM XỬ LÝ ẢNH CHUẨN
+  const getImageUrl = (path) => {
+    if (!path) return "/no-image.jpg";
+    if (path.startsWith("http")) return path;
+    const baseUrl = (process.env.NEXT_PUBLIC_API_URL || "https://cameraclick-be-production.up.railway.app/api").replace(/\/api\/?$/, '');
+    let cleanPath = path;
+    if (cleanPath.startsWith('storage/')) {
+      cleanPath = cleanPath.replace('storage/', '');
+    }
+    return `${baseUrl}/storage/${cleanPath}`;
+  };
 
   // Cấu hình các mức giá lọc
   const priceFilters = [
@@ -230,9 +240,9 @@ export default function ProductPage() {
                   const isOutOfStock = stockQty <= 0;
                   const hasSale = p.price_sale && parseFloat(p.price_sale) > 0;
                   const discountPercent = calculateDiscount(p.price_buy, p.price_sale);
-                  const thumb = p.thumbnail 
-                    ? (p.thumbnail.startsWith('http') ? p.thumbnail : `${API_URL}/storage/${p.thumbnail}`) 
-                    : "/no-image.jpg";
+                  
+                  // Gọi hàm nối ảnh
+                  const thumb = getImageUrl(p.thumbnail);
 
                   return (
                     <div className="col-6 col-md-4" key={p.id}>

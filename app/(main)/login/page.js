@@ -57,7 +57,7 @@ export default function LoginPage() {
              <ShieldCheck size={40} className="text-orange" />
           </div>
           <h2 className="fw-black text-uppercase ls-2">Đăng Nhập</h2>
-          <p className="text-muted small ls-1">Chào mừng bạn trở lại với CameraPro</p>
+          <p className="text-muted small ls-1">Chào mừng bạn trở lại với CameraClick</p>
         </div>
 
         {error && (

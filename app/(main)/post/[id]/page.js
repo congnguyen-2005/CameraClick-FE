@@ -82,7 +82,7 @@ export default function BlogDetail() {
             <div className="meta-divider"></div>
             <div className="meta-item">
               <User size={16} />
-              <span>Tác giả: Admin CamStore</span>
+              <span>Tác giả: Admin CameraClick</span>
             </div>
             <div className="meta-divider d-none d-md-block"></div>
             <div className="meta-item d-none d-md-flex">
@@ -120,7 +120,7 @@ export default function BlogDetail() {
               <div className="d-flex gap-2 flex-wrap">
                 <span className="tag-luxury">#Photography</span>
                 <span className="tag-luxury">#SonyAlpha</span>
-                <span className="tag-luxury">#CamStoreTips</span>
+                <span className="tag-luxury">#CameraClickTips</span>
               </div>
             </div>
             <div className="col-md-4 text-md-end mt-3 mt-md-0">

@@ -1,5 +1,5 @@
 export const metadata = {
-  title: "CameraPro – Trang chủ",
+  title: "CameraClick – Trang chủ",
   description: "Website bán máy ảnh chuyên nghiệp",
 };
 

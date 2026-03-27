@@ -15,7 +15,6 @@ import CartService from "../../../services/cartService";
 export default function ProductDetail() {
   const { id } = useParams();
   const router = useRouter();
-  const API_URL = process.env.NEXT_PUBLIC_API_URL || "https://cameraclick-be-production.up.railway.app/api";
 
   const [product, setProduct] = useState(null);
   const [relatedProducts, setRelatedProducts] = useState([]); // STATE SẢN PHẨM LIÊN QUAN
@@ -28,11 +27,19 @@ export default function ProductDetail() {
   // LOGIC THUỘC TÍNH
   const [selectedAttributes, setSelectedAttributes] = useState({});
 
+  // HÀM XỬ LÝ ẢNH CHUẨN (Fix lỗi /api/storage)
   const getFullImageUrl = (path) => {
     if (!path) return "/no-image.jpg";
     if (path.startsWith('http')) return path;
-    let cleanPath = path.replace(/^\/?(storage\/)+/, '');
-    return `${API_URL}/storage/${cleanPath}`;
+    
+    const baseUrl = (process.env.NEXT_PUBLIC_API_URL || "https://cameraclick-be-production.up.railway.app/api").replace(/\/api\/?$/, '');
+    
+    let cleanPath = path;
+    if (cleanPath.startsWith('storage/')) {
+      cleanPath = cleanPath.replace('storage/', '');
+    }
+    
+    return `${baseUrl}/storage/${cleanPath}`;
   };
 
   useEffect(() => {

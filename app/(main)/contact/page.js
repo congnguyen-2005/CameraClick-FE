@@ -33,7 +33,7 @@ export default function ContactPage() {
       {/* 1. HERO HEADER */}
       <div className="contact-hero py-5 text-center bg-dark text-white mb-5">
         <div className="container">
-          <h1 className="display-4 fw-black text-uppercase ls-2">Kết nối với <span className="text-orange">CamStore</span></h1>
+          <h1 className="display-4 fw-black text-uppercase ls-2">Kết nối với <span className="text-orange">CameraClick</span></h1>
           <p className="lead opacity-75 fw-light">Đội ngũ chuyên gia luôn sẵn sàng hỗ trợ đam mê nhiếp ảnh của bạn 24/7</p>
         </div>
       </div>
@@ -50,7 +50,7 @@ export default function ContactPage() {
                 {[
                   { icon: <MapPin size={22} />, label: "Địa chỉ Showroom", value: "20 Lương Hữu Khánh, Quận 1, TP. Hồ Chí Minh" },
                   { icon: <Phone size={22} />, label: "Hotline Tư vấn", value: "090 123 4567" },
-                  { icon: <Mail size={22} />, label: "Email hỗ trợ", value: "support@camstore.vn" },
+                  { icon: <Mail size={22} />, label: "Email hỗ trợ", value: "support@cameraclick.vn" },
                   { icon: <Clock size={22} />, label: "Giờ làm việc", value: "08:00 - 21:00 (Thứ 2 - Chủ nhật)" }
                 ].map((item, index) => (
                   <div className="d-flex align-items-start mb-4 pb-3 border-bottom border-light" key={index}>

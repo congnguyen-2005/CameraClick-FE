@@ -40,7 +40,7 @@ export default function Footer() {
         {/* SECTION 1: FEEDBACK & CONTACT */}
         <div className="row align-items-center mb-5 pb-5 border-bottom border-white border-opacity-10">
           <div className="col-lg-6 mb-4 mb-lg-0 text-center text-lg-start ">
-            <h2 className="fw-black text-white text-uppercase ls-2 mb-3">CameraPro lắng nghe bạn!</h2>
+            <h2 className="fw-black text-white text-uppercase ls-2 mb-3">CameraClick lắng nghe bạn!</h2>
             <p className="text-white-50 fw-light mb-4 ls-1">
               Chúng tôi trân trọng mọi góp ý để nâng cấp trải nghiệm và sản phẩm tốt hơn mỗi ngày.
             </p>
@@ -66,7 +66,7 @@ export default function Footer() {
                   <div className="icon-circle"><Mail size={20}/></div>
                   <div className="ms-3">
                     <div className="contact-label">Hỗ trợ kỹ thuật</div>
-                    <div className="contact-value">support@camerapro.vn</div>
+                    <div className="contact-value">support@cameraclick.vn</div>
                   </div>
                 </div>
               </div>
@@ -78,7 +78,7 @@ export default function Footer() {
         <div className="row g-5 mb-5">
           {/* Cột 1: Brand */}
           <div className="col-lg-3 col-md-6">
-            <h5 className="footer-heading text-warning">CameraPro</h5>
+            <h5 className="footer-heading text-warning">CameraClick</h5>
             <ul className="footer-nav">
               <li><Link href="#">Về chúng tôi</Link></li>
               <li><Link href="#">Cơ hội nghề nghiệp</Link></li>
@@ -127,7 +127,7 @@ export default function Footer() {
             </div>
             <div className="address-flex">
               <MapPin size={20} className="text-warning mt-1" />
-              <p className="ms-2 mb-0">Toà nhà CameraPro, P. Linh Trung, TP. Thủ Đức, HCM</p>
+              <p className="ms-2 mb-0">P.Tăng Nhơn Phú, TP. Hồ Chí Minh</p>
             </div>
           </div>
         </div>
@@ -135,7 +135,7 @@ export default function Footer() {
         {/* SECTION 3: COPYRIGHT */}
         <div className="footer-copy pt-4 pb-4">
           <p className="mb-0">
-            © {new Date().getFullYear()} CameraPro – Professional Imaging Solution. All rights reserved.
+            © {new Date().getFullYear()} CameraClick – Professional Imaging Solution. All rights reserved.
           </p>
         </div>
       </div>

@@ -8,7 +8,7 @@ import Footer from "./components/Footer";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {
-  title: "CameraPro Admin",
+  title: "CameraClick Admin",
 };
 
 export default function RootLayout({ children }) {
