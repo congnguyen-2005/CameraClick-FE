@@ -1,19 +1,14 @@
 // app/layout.js
-
 import { Inter } from "next/font/google";
-import "bootstrap/dist/css/bootstrap.min.css"; // Import Bootstrap
-import Header from "./components/Header";
-import Footer from "./components/Footer";
+import "bootstrap/dist/css/bootstrap.min.css";
 
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {
-  // Đổi title cho đúng với tab trình duyệt của bạn
-  title: "CameraClick - Trang chủ", 
-  description: "Hệ sinh thái nhiếp ảnh chuyên nghiệp Alpha",
-  // ÉP BUỘC NEXT.JS NHẬN LOGO MỚI (Trỏ vào thư mục public)
+  title: "CameraClick - Hệ sinh thái Alpha",
+  description: "Website bán máy ảnh chuyên nghiệp",
   icons: {
-    icon: '/favicon.ico', 
+    icon: '/favicon.ico', // File này phải nằm trong thư mục public
     shortcut: '/favicon.ico',
     apple: '/favicon.ico',
   },
@@ -23,15 +18,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="vi">
       <body className={inter.className}>
-        
-        <Header />
-
-        <main style={{ minHeight: "80vh" }}>
-          {children}
-        </main>
-
-        <Footer />
-        
+        {children}
       </body>
     </html>
   );

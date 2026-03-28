@@ -1,3 +1,5 @@
+import Header from "../components/Header"; // Chú ý đường dẫn ../
+import Footer from "../components/Footer";
 export const metadata = {
   title: "CameraClick – Trang chủ",
   description: "Website bán máy ảnh chuyên nghiệp",
@@ -5,10 +7,12 @@ export const metadata = {
 
 export default function MainLayout({ children }) {
   return (
-    
-        <div className="container-fluid px-0">
-          {children}
-        </div>
-      
+    <>
+      <Header />
+      <main style={{ minHeight: "80vh" }} className="container-fluid px-0">
+        {children}
+      </main>
+      <Footer />
+    </>
   );
-}
+} 
