@@ -8,25 +8,28 @@ import Footer from "./components/Footer";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {
-  title: "CameraClick Admin",
+  // Đổi title cho đúng với tab trình duyệt của bạn
+  title: "CameraClick - Trang chủ", 
+  description: "Hệ sinh thái nhiếp ảnh chuyên nghiệp Alpha",
+  // ÉP BUỘC NEXT.JS NHẬN LOGO MỚI (Trỏ vào thư mục public)
+  icons: {
+    icon: '/favicon.ico', 
+    shortcut: '/favicon.ico',
+    apple: '/favicon.ico',
+  },
 };
 
 export default function RootLayout({ children }) {
   return (
     <html lang="vi">
-      {/* 1. Áp dụng font Inter vào body */}
       <body className={inter.className}>
         
-        {/* 2. Header phải nằm TRONG body */}
         <Header />
 
-        {/* 3. Phần nội dung chính (children) */}
-        {/* Thêm minHeight để đẩy Footer xuống đáy nếu trang ít nội dung */}
         <main style={{ minHeight: "80vh" }}>
           {children}
         </main>
 
-        {/* 4. Footer cũng phải nằm TRONG body */}
         <Footer />
         
       </body>
